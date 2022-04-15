@@ -11,9 +11,8 @@ logging.level:
   org.springframework.data: warn
 
 spring:
-  config:
-    activate:
-      on-profile: azure
+  profiles:
+    active: azure
   flyway:
     enabled: false
   security:
