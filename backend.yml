@@ -34,7 +34,7 @@ spring:
     enabled: true
   datasource:
     url: jdbc:mysql://${MYSQL_SERVER}.mysql.database.azure.com:3306/${MYSQL_DATABASE}?serverTimezone=UTC&sslmode=required
-    username: ${MYSQL_USERNAME}@${MYSQL_SERVER}
+    username: ${MYSQL_USERNAME}
     password: ${MYSQL_PASSWORD}
 
 ---
