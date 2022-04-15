@@ -11,8 +11,9 @@ logging.level:
   org.springframework.data: warn
 
 spring:
-  profiles:
-    active: azure
+  config:
+    activate:
+      on-profile: azure
   flyway:
     enabled: false
   security:
@@ -23,3 +24,32 @@ spring:
 
 animal-rescue:
   adoption-request-limit: 10
+
+---
+spring:
+  config:
+    activate:
+      on-profile: mysql
+  flyway:
+    enabled: true
+  datasource:
+    url: jdbc:mysql://${MYSQL_SERVER}.mysql.database.azure.com:3306/${MYSQL_DATABASE}?serverTimezone=UTC&sslmode=required
+    username: ${MYSQL_USERNAME}@${MYSQL_SERVER}
+    password: ${MYSQL_PASSWORD}
+
+---
+spring:
+  config:
+    activate:
+      on-profile: key-vault
+  cloud:
+    azure:
+      keyvault:
+        secret:
+          enabled: true
+          endpoint: ${AZURE_KEY_VAULT_URI}
+
+MYSQL_SERVER: ${MYSQL-SERVER-FULL-NAME}
+MYSQL_DATABASE: ${MYSQL-DATABASE-NAME}
+MYSQL_USERNAME: ${MYSQL-SERVER-ADMIN-LOGIN-NAME}
+MYSQL_PASSWORD: ${MYSQL-SERVER-ADMIN-PASSWORD}
